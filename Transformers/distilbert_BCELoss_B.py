@@ -66,7 +66,7 @@ MAX_LEN = 512
 TRAIN_BATCH_SIZE = 4
 VALID_BATCH_SIZE = 4
 EPOCHS = epochs
-LEARNING_RATE = 1e-04
+LEARNING_RATE = 1e-05
 tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased', truncation=True, do_lower_case=True)
 
 # Define CustomDataset
@@ -166,7 +166,7 @@ model = DistilBERTClass()
 model.to(device)
 from util_loss import ResampleLoss
 
-loss_func_name ='CBloss-ntr'
+loss_func_name ='DBloss'
 if loss_func_name == 'BCE':
     loss_func = ResampleLoss(reweight_func=None, loss_weight=1.0,
                              focal=dict(focal=False, alpha=0.5, gamma=2),
@@ -236,7 +236,7 @@ def loss_plot(epochs, loss_train, loss_vals):
     plt.legend()
     plt.xlabel("epochs")
     plt.title(" loss")
-    plt.savefig(dataset + "train_val_loss.png")
+    plt.savefig(dataset + loss_func_name+"loss.png")
 
 # Train Model
 def train_model(start_epochs,  n_epochs,
