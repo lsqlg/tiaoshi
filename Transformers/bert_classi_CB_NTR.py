@@ -80,7 +80,7 @@ TRAIN_BATCH_SIZE = 4
 VALID_BATCH_SIZE = 4
 EPOCHS = epochs
 LEARNING_RATE = 1e-05
-tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased', max_len=max_len)
+tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased', max_len=MAX_LEN)
 
 
 
