@@ -163,9 +163,8 @@ class BERTClass(torch.nn.Module):
         
         hidden_state = output_1[0]
         pooler = hidden_state[:, 0]
-        output_2 = self.l2(pooler)
-        output_3 = self.l4(output_2)
-        output = self.l3(output_3)
+        
+        output = self.l3(pooler)
         return output
         
 
