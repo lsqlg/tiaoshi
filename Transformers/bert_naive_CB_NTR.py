@@ -155,13 +155,19 @@ class BERTClass(torch.nn.Module):
         super(BERTClass, self).__init__()
         self.l1 = transformers.BertModel.from_pretrained('bert-base-uncased')
         self.l2 = torch.nn.Dropout(0.3)
+         self.l4 = torch.nn.Dropout(0.2)
         self.l3 = torch.nn.Linear(768, labels)
 
     def forward(self, ids, mask,token_type_ids):
         output_1 = self.l1(ids, attention_mask=mask,token_type_ids=token_type_ids)
-        #hidden_state = output_1[0]
         
-        return output_1
+        hidden_state = output_1[0]
+        pooler = hidden_state[:, 0]
+        output_2 = self.l2(pooler)
+        output_3 = self.l4(output_2)
+        output = self.l3(output_3)
+        return output
+        
 
 
 model = BERTClass()
