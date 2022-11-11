@@ -159,9 +159,9 @@ class BERTClass(torch.nn.Module):
 
     def forward(self, ids, mask,token_type_ids):
         output_1 = self.l1(ids, attention_mask=mask,token_type_ids=token_type_ids)
-        hidden_state = output_1[0]
+        #hidden_state = output_1[0]
         
-        return hidden_state
+        return output_1
 
 
 model = BERTClass()
@@ -268,6 +268,7 @@ def train_model(start_epochs, n_epochs,
             mask = data['mask'].to(device, dtype=torch.long)
             token_type_ids = data['token_type_ids'].to(device, dtype = torch.long)
             outputs = model(ids, mask,token_type_ids)
+            outputs =outputs[0]
             # Backward
             loss = loss_fn(outputs, targets)
             loss.backward()
