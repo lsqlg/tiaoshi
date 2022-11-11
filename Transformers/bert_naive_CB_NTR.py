@@ -155,7 +155,7 @@ class BERTClass(torch.nn.Module):
         super(BERTClass, self).__init__()
         self.l1 = transformers.BertModel.from_pretrained('bert-base-uncased')
         self.l2 = torch.nn.Dropout(0.3)
-         self.l4 = torch.nn.Dropout(0.2)
+        self.l4 = torch.nn.Dropout(0.2)
         self.l3 = torch.nn.Linear(768, labels)
 
     def forward(self, ids, mask,token_type_ids):
