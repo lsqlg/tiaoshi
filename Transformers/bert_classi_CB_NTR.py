@@ -17,6 +17,7 @@ import pickle
 import os
 
 # Source Data
+num_labels=90
 dataset = "bert_R21578"   #[ 'R21578', 'RCV1-V2', 'Econbiz', 'Amazon-531', 'DBPedia-298','NYT AC','GoEmotions']
 labels = 90                #[90,101,5658,512,298,166,28]
 epochs = 15                #[15,15,15,15,5,15,5]
@@ -157,7 +158,7 @@ class BERTClass(torch.nn.Module):
     def __init__(self):
         super(BERTClass, self).__init__()
         
-        self.l1 = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=labels)
+        self.l1 = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=num_labels)
        
 
     def forward(self, ids, mask,token_type_ids):
