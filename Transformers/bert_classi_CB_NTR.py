@@ -80,7 +80,7 @@ TRAIN_BATCH_SIZE = 4
 VALID_BATCH_SIZE = 4
 EPOCHS = epochs
 LEARNING_RATE = 1e-05
-tokenizer = AutoTokenizer.from_pretrained(model_checkpoint, max_len=max_len)
+tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased', max_len=max_len)
 
 
 
@@ -157,7 +157,7 @@ class BERTClass(torch.nn.Module):
     def __init__(self):
         super(BERTClass, self).__init__()
         
-        self.l1 = AutoModelForSequenceClassification.from_pretrained(model_checkpoint, num_labels=labels)
+        self.l1 = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=labels)
        
 
     def forward(self, ids, mask,token_type_ids):
